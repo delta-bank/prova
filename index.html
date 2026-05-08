@@ -41,12 +41,12 @@
 
         .main { flex: 1; padding: 0 25px; display: flex; flex-direction: column; align-items: center; }
 
-        /* --- LOGICA CARTA 3D --- */
+        /* --- LOGICA CARTA 3D AGGIORNATA --- */
         .card-container {
             width: 100%;
             max-width: 340px;
             aspect-ratio: 1.58 / 1;
-            perspective: 1200px;
+            perspective: 1200px; /* Cruciale per l'effetto 3D */
             z-index: 10;
         }
 
@@ -67,16 +67,30 @@
             position: absolute;
             top: 0;
             left: 0;
-            backface-visibility: hidden;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            
+            /* NASCONDE IL RETRO DEL LIVELLO */
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            
+            /* Aggiunta: Transizione pulita per l'opacità durante il flip */
+            transition: opacity 0.3s ease;
         }
 
         /* --- FRONTE --- */
         .card-front {
             background-color: var(--card-color);
             background-image: radial-gradient(circle at top left, rgba(255,255,255,0.05), transparent);
+            z-index: 2; /* Inizialmente sopra */
+            opacity: 1;
+        }
+        
+        /* Quando la carta è flippata, il fronte scompare */
+        .card-flipper.is-flipped .card-front {
+            opacity: 0;
+            pointer-events: none; /* Impedisce di cliccarci sopra mentre è girata */
         }
 
         .card-center-logo {
@@ -111,10 +125,16 @@
         /* --- RETRO --- */
         .card-back {
             background-color: #161d36;
-            transform: rotateY(180deg);
+            transform: rotateY(180deg); /* Ruotato inizialmente */
             display: flex;
             flex-direction: column;
             padding: 0;
+            opacity: 0; /* Inizialmente invisibile */
+        }
+        
+        /* Quando la carta è flippata, il retro appare */
+        .card-flipper.is-flipped .card-back {
+            opacity: 1;
         }
 
         .magnetic-strip {
@@ -201,7 +221,7 @@
         <div class="card-container">
             <div class="card-flipper" id="cardFlipper">
                 
-                <div class="card-face card-front">
+                <div class="card-face card-front" id="cardFront">
                     <img src="iltuologo.png" class="card-center-logo">
                     <div class="card-chip"></div>
                     <i class="fa-brands fa-cc-mastercard mastercard-icon"></i>
@@ -212,7 +232,7 @@
                     </div>
                 </div>
 
-                <div class="card-face card-back">
+                <div class="card-face card-back" id="cardBack">
                     <div class="magnetic-strip"></div>
                     <div class="signature-area">
                         <span class="cvv-txt">884</span>
@@ -250,9 +270,14 @@
     <script>
         const cardFlipper = document.getElementById('cardFlipper');
         const reverseBtn = document.getElementById('reverseBtn');
+        const cardFront = document.getElementById('cardFront');
+        const cardBack = document.getElementById('cardBack');
 
         reverseBtn.addEventListener('click', () => {
+            // Aggiunge la classe per il flip 3D
             cardFlipper.classList.toggle('is-flipped');
+            
+            // Logica CSS (opacity) gestirà la visibilità pulita tramite le classi
         });
     </script>
 
