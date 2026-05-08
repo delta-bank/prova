@@ -110,7 +110,7 @@
             /* POSIZIONAMENTO LIBERO */
     position: absolute; 
     top: 25px;   /* Distanza dal bordo superiore */
-    left: 50px;  /* Distanza dal bordo sinistro */
+    left: 0px;  /* Distanza dal bordo sinistro */
     z-index: 3;
         }
 
@@ -125,7 +125,12 @@
             color: #fff; 
             font-family: 'Courier New', monospace; 
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
+        /* POSIZIONAMENTO LIBERO */
+    position: absolute;
+    top: 60%;    /* Posizione verticale (50% è il centro esatto) */
+    left: 25px;  /* Distanza dal bordo sinistro */
+    z-index: 2;
+}
         
         .card-bottom { 
             display: flex; 
