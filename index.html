@@ -89,12 +89,18 @@
         }
 
         .card-chip {
-            width: 48px;
-            height: 35px;
-            background: linear-gradient(135deg, #fceabb 0%, #fccd4d 50%, #f8b500 51%, #fbdf93 100%);
-            border-radius: 6px;
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
-        }
+    width: 48px;
+    height: 35px;
+    background: linear-gradient(135deg, #fceabb 0%, #fccd4d 50%, #f8b500 51%, #fbdf93 100%);
+    border-radius: 6px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    
+    /* POSIZIONAMENTO LIBERO */
+    position: absolute; 
+    top: 25px;   /* Distanza dal bordo superiore */
+    left: 25px;  /* Distanza dal bordo sinistro */
+    z-index: 3;
+}
 
         /* Logo Circuito (es. Mastercard) */
         .circuit-logo {
