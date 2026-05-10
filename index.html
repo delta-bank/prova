@@ -12,7 +12,6 @@
             --card-bg: #2a345e;
             --text-color: #ffffff;
             --nav-bg: #151b33;
-            --f1-color: #e10600; /* Rosso F1 */
         }
 
         body {
@@ -20,89 +19,76 @@
             font-family: 'Roboto', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            padding-bottom: 80px;
+            padding-bottom: 90px;
         }
 
-        header {
-            padding: 20px;
-            text-align: center;
-            background: rgba(0,0,0,0.2);
-        }
+        header { padding: 20px; text-align: center; background: rgba(0,0,0,0.2); }
+        h1 { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; letter-spacing: 2px; margin: 0; }
 
-        h1 { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; letter-spacing: 2px; }
-
-        .page { display: none; padding: 20px; animation: fadeIn 0.3s ease; }
+        .page { display: none; padding: 20px; animation: fadeIn 0.2s ease; }
         .active { display: block; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Griglia Categorie Home */
+        /* Griglie Categorie */
         .category-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .cat-card {
             background: var(--card-bg);
-            height: 120px;
+            height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 15px;
+            border-radius: 12px;
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        .cat-card:active { transform: scale(0.95); background: var(--accent-color); }
-
-        /* Piloti */
+        /* Liste Piloti e Tabelle Classifiche */
         .pilot-card {
-            background: linear-gradient(135deg, var(--card-bg) 0%, #151b33 100%);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
             border-left: 4px solid var(--accent-color);
         }
 
-        .pilot-name { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin-bottom: 5px; }
-        .pilot-stats { display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8rem; color: #aaa; }
-        .stat-val { color: var(--accent-color); font-weight: bold; display: block; font-size: 1rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; background: rgba(0,0,0,0.2); border-radius: 8px; overflow: hidden; }
+        th, td { padding: 12px; text-align: left; font-size: 0.9rem; }
+        th { background: rgba(255,255,255,0.1); color: var(--accent-color); font-family: 'Orbitron'; font-size: 0.7rem; }
+        tr:not(:last-child) { border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+        .rank-num { font-family: 'Orbitron'; color: var(--accent-color); width: 30px; }
 
         .back-btn {
-            background: none;
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 8px 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            cursor: pointer;
+            background: none; border: 1px solid var(--accent-color); color: var(--accent-color);
+            padding: 8px 12px; border-radius: 5px; margin-bottom: 15px; cursor: pointer;
         }
 
         /* Nav Bar */
         nav {
-            position: fixed;
-            bottom: 0; width: 100%; height: 70px;
-            background: var(--nav-bg);
-            display: flex; justify-content: space-around; align-items: center;
+            position: fixed; bottom: 0; width: 100%; height: 75px;
+            background: var(--nav-bg); display: flex; justify-content: space-around; align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
-        .nav-item { background: none; border: none; color: #666; font-size: 0.7rem; }
+        .nav-item { background: none; border: none; color: #666; font-size: 0.7rem; font-weight: bold; }
         .nav-item.active-btn { color: var(--accent-color); }
-        .nav-icon { font-size: 1.4rem; display: block; }
+        .nav-icon { font-size: 1.5rem; display: block; margin-bottom: 4px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>VIRTUAL RACING TEAM</h1>
-    </header>
+    <header><h1>VRT SIM RACING</h1></header>
 
     <div id="home" class="page active">
-        <h2 style="text-align: center; font-size: 1rem; color: var(--accent-color);">SELEZIONA CATEGORIA</h2>
+        <h2 style="font-size: 1rem; text-align: center;">LINEUP PILOTI</h2>
         <div class="category-grid">
             <div class="cat-card" onclick="showCategory('F1')">F1</div>
             <div class="cat-card" onclick="showCategory('F2')">F2</div>
@@ -111,87 +97,102 @@
         </div>
     </div>
 
-    <div id="categoria-detail" class="page">
-        <button class="back-btn" onclick="openPage('home')">← Indietro</button>
-        <h2 id="cat-title" style="font-family: 'Orbitron';">CATEGORIA</h2>
-        <div id="piloti-container">
-            </div>
-    </div>
-
-    <div id="classifica" class="page">
-        <h2 style="font-family: 'Orbitron';">RANKING TEAM</h2>
-        <div class="pilot-card" style="padding: 10px;">
-            <p>1. Mario Rossi (F1) - 150 pt</p>
-            <hr style="opacity: 0.1;">
-            <p>2. Luigi Bianchi (F1) - 140 pt</p>
-            <hr style="opacity: 0.1;">
-            <p>3. Alessandro Neri (F2) - 120 pt</p>
+    <div id="rank-menu" class="page">
+        <h2 style="font-size: 1rem; text-align: center;">CLASSIFICHE CAMPIONATO</h2>
+        <div class="category-grid">
+            <div class="cat-card" style="border-color: gold;" onclick="showRank('F1')">F1 RANK</div>
+            <div class="cat-card" style="border-color: gold;" onclick="showRank('F2')">F2 RANK</div>
+            <div class="cat-card" style="border-color: gold;" onclick="showRank('F3')">F3 RANK</div>
+            <div class="cat-card" style="border-color: gold;" onclick="showRank('F4')">F4 RANK</div>
         </div>
     </div>
 
+    <div id="categoria-detail" class="page">
+        <button class="back-btn" onclick="openPage('home')">← Categorie</button>
+        <h2 id="cat-title" style="font-family: 'Orbitron'; color: var(--accent-color);"></h2>
+        <div id="piloti-container"></div>
+    </div>
+
+    <div id="rank-detail" class="page">
+        <button class="back-btn" onclick="openPage('rank-menu')">← Classifiche</button>
+        <h2 id="rank-title" style="font-family: 'Orbitron'; color: var(--accent-color);"></h2>
+        
+        <h3 style="font-family: 'Orbitron'; font-size: 0.9rem; margin-top: 20px;">🏆 PILOTI</h3>
+        <table id="table-piloti"></table>
+
+        <h3 style="font-family: 'Orbitron'; font-size: 0.9rem; margin-top: 30px;">🏭 COSTRUTTORI</h3>
+        <table id="table-team"></table>
+    </div>
+
     <nav>
-        <button class="nav-item active-btn" onclick="openPage('home', this)">
+        <button id="btn-home" class="nav-item active-btn" onclick="openPage('home', this)">
             <span class="nav-icon">🏠</span>HOME
         </button>
-        <button class="nav-item" onclick="openPage('classifica', this)">
+        <button id="btn-rank" class="nav-item" onclick="openPage('rank-menu', this)">
             <span class="nav-icon">📊</span>RANK
         </button>
     </nav>
 
     <script>
-        // Database piloti (Modifica questi dati per aggiornare il sito)
         const teamData = {
-            'F1': [
-                { nome: 'Mario Rossi', vittorie: 5, podi: 12, irating: '4500' },
-                { nome: 'Luigi Bianchi', vittorie: 3, podi: 8, irating: '4100' }
-            ],
-            'F2': [
-                { nome: 'Alessandro Neri', vittorie: 2, podi: 5, irating: '3200' },
-                { nome: 'Marco Viola', vittorie: 1, podi: 4, irating: '3000' }
-            ],
-            'F3': [
-                { nome: 'Davide Gialli', vittorie: 0, podi: 2, irating: '2500' },
-                { nome: 'Luca Verdi', vittorie: 1, podi: 1, irating: '2400' }
-            ],
-            'F4': [
-                { nome: 'Pietro Arancio', vittorie: 0, podi: 0, irating: '1800' },
-                { nome: 'Enrico Blu', vittorie: 0, podi: 1, irating: '1750' }
-            ]
+            'F1': {
+                piloti: [
+                    { nome: 'Mario Rossi', vittorie: 5, ir: '4.5k' },
+                    { nome: 'Luigi Bianchi', vittorie: 3, ir: '4.1k' }
+                ],
+                classificaPiloti: [
+                    { pos: 1, nome: 'Mario Rossi', pt: 150 },
+                    { pos: 2, nome: 'Luigi Bianchi', pt: 130 },
+                    { pos: 3, nome: 'Max Ver', pt: 110 }
+                ],
+                classificaTeam: [
+                    { pos: 1, nome: 'VRT Racing', pt: 280 },
+                    { pos: 2, nome: 'Red Bull', pt: 250 }
+                ]
+            },
+            'F2': {
+                piloti: [{ nome: 'Alessandro Neri', vittorie: 2, ir: '3.2k' }, { nome: 'Marco Viola', vittorie: 1, ir: '3.0k' }],
+                classificaPiloti: [{ pos: 1, nome: 'Alessandro Neri', pt: 90 }],
+                classificaTeam: [{ pos: 1, nome: 'VRT Academy', pt: 150 }]
+            },
+            // Aggiungi qui F3 e F4 seguendo lo stesso schema...
         };
 
         function showCategory(cat) {
             const container = document.getElementById('piloti-container');
             document.getElementById('cat-title').innerText = 'TEAM ' + cat;
-            container.innerHTML = ''; // Pulisce i piloti precedenti
-
-            teamData[cat].forEach(pilota => {
-                container.innerHTML += `
-                    <div class="pilot-card">
-                        <div class="pilot-name">${pilota.nome}</div>
-                        <div class="pilot-stats">
-                            <div>VITTORIE <span class="stat-val">${pilota.vittorie}</span></div>
-                            <div>PODI <span class="stat-val">${pilota.podi}</span></div>
-                            <div>iRATING <span class="stat-val">${pilota.irating}</span></div>
-                        </div>
-                    </div>
-                `;
+            container.innerHTML = '';
+            teamData[cat].piloti.forEach(p => {
+                container.innerHTML += `<div class="pilot-card"><strong>${p.nome}</strong><br><small>Vittorie: ${p.vittorie} | iRating: ${p.ir}</small></div>`;
             });
-
             openPage('categoria-detail');
         }
 
-        function openPage(pageId, btn) {
-            // Nasconde tutte le pagine
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(p => p.classList.remove('active'));
+        function showRank(cat) {
+            document.getElementById('rank-title').innerText = 'RANK ' + cat;
             
-            // Mostra la pagina richiesta
-            document.getElementById(pageId).classList.add('active');
+            // Riempie tabella Piloti
+            let htmlP = `<tr><th>POS</th><th>PILOTA</th><th>PT</th></tr>`;
+            teamData[cat].classificaPiloti.forEach(r => {
+                htmlP += `<tr><td class="rank-num">${r.pos}</td><td>${r.nome}</td><td>${r.pt}</td></tr>`;
+            });
+            document.getElementById('table-piloti').innerHTML = htmlP;
 
-            // Gestione estetica bottoni nav
+            // Riempie tabella Team
+            let htmlT = `<tr><th>POS</th><th>TEAM</th><th>PT</th></tr>`;
+            teamData[cat].classificaTeam.forEach(r => {
+                htmlT += `<tr><td class="rank-num">${r.pos}</td><td>${r.nome}</td><td>${r.pt}</td></tr>`;
+            });
+            document.getElementById('table-team').innerHTML = htmlT;
+
+            openPage('rank-detail');
+        }
+
+        function openPage(pageId, btn) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
             if(btn) {
-                const navBtns = document.querySelectorAll('.nav-item');
-                navBtns.forEach(b => b.classList.remove('active-btn'));
+                document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active-btn'));
                 btn.classList.add('active-btn');
             }
         }
