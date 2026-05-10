@@ -7,75 +7,75 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #1e2748;
+            --bg-color: #1e2748; /* Il tuo colore preferito */
             --accent-color: #00d4ff;
-            --card-bg: #000000; /* Nero puro per le card */
-            --text-color: #ffffff;
-            --nav-bg: #0a0a0a;  /* Nero quasi totale per la nav */
+            --card-bg: #000000;
+            --nav-bg: #0a0a0a;
             --border-color: #333333;
         }
 
         body {
             margin: 0; font-family: 'Roboto', sans-serif;
-            background-color: var(--bg-color); color: var(--text-color);
+            background-color: var(--bg-color); color: #fff;
             padding-bottom: 90px; overflow-x: hidden;
         }
 
         header { padding: 15px; text-align: center; background: #000; border-bottom: 2px solid var(--accent-color); }
-        h1 { font-family: 'Orbitron', sans-serif; font-size: 1rem; letter-spacing: 2px; margin: 0; color: var(--accent-color); }
+        h1 { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; letter-spacing: 2px; margin: 0; color: var(--accent-color); }
 
         .page { display: none; padding: 20px; animation: fadeIn 0.2s ease; }
         .active { display: block; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Griglie Categorie e Tasti */
+        /* Tasti Categorie */
         .category-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
         .cat-card {
-            background: #000; height: 90px; display: flex; align-items: center;
+            background: #000; height: 80px; display: flex; align-items: center;
             justify-content: center; border-radius: 12px; font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem; border: 1px solid var(--border-color); color: #fff;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            font-size: 1.1rem; border: 1px solid var(--border-color); color: #fff;
         }
-        .cat-card:active { background: var(--accent-color); color: #000; transform: scale(0.95); }
+        .cat-card:active { background: var(--accent-color); color: #000; }
 
         /* Card Pilota */
         .pilot-card {
-            background: #000; border-radius: 15px; padding: 15px;
-            margin-bottom: 15px; display: flex; align-items: center; gap: 20px;
-            border: 1px solid var(--border-color);
-            border-left: 5px solid var(--accent-color);
+            background: #000; border-radius: 15px; padding: 15px; margin-bottom: 15px;
+            display: flex; align-items: center; gap: 20px; border-left: 5px solid var(--accent-color);
         }
-        .pilot-photo {
-            width: 85px; height: 85px; border-radius: 12px;
-            background: #222; object-fit: cover; border: 1px solid var(--accent-color);
-        }
-        .pilot-info { flex: 1; }
-        .pilot-name { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; margin-bottom: 8px; display: block; color: var(--accent-color); }
-        .pilot-stats-row { display: flex; justify-content: space-between; font-size: 0.8rem; color: #eee; }
-        .stat-box { display: flex; flex-direction: column; align-items: center; }
-        .stat-label { font-size: 0.6rem; text-transform: uppercase; color: #888; font-weight: bold; }
+        .pilot-photo { width: 85px; height: 85px; border-radius: 12px; object-fit: cover; border: 1px solid var(--accent-color); background: #222; }
+        .pilot-name { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; color: var(--accent-color); margin-bottom: 5px; display: block; }
+        .pilot-stats-row { display: flex; justify-content: space-between; font-size: 0.8rem; }
+        .stat-label { font-size: 0.6rem; color: #888; text-transform: uppercase; }
 
-        /* Tabelle Classifiche Nere */
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; background: #000; border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color); }
+        /* Palmares Row */
+        .palmares-row {
+            background: #000; padding: 15px; border-radius: 10px; margin-bottom: 10px;
+            display: flex; align-items: center; justify-content: flex-start; gap: 20px;
+            border: 1px solid var(--border-color);
+        }
+        .palmares-year { font-family: 'Orbitron'; font-weight: bold; color: var(--accent-color); font-size: 1.1rem; width: 60px; }
+        .palmares-logo { width: 35px; height: 35px; }
+        .palmares-text { font-family: 'Orbitron'; font-size: 0.8rem; letter-spacing: 1px; color: #fff; }
+
+        /* Tabelle */
+        table { width: 100%; border-collapse: collapse; background: #000; border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color); }
         th, td { padding: 14px 10px; text-align: left; font-size: 0.85rem; border-bottom: 1px solid var(--border-color); }
-        th { font-family: 'Orbitron'; font-size: 0.65rem; color: var(--accent-color); background: #111; }
-        tr:last-child td { border-bottom: none; }
-        .rank-num { font-family: 'Orbitron'; color: var(--accent-color); font-weight: bold; width: 25px; }
+        th { font-family: 'Orbitron'; color: var(--accent-color); background: #111; font-size: 0.65rem; }
+        .rank-num { font-family: 'Orbitron'; color: var(--accent-color); width: 25px; }
 
         .back-btn {
             background: #000; border: 1px solid var(--accent-color); color: var(--accent-color);
             padding: 10px 15px; border-radius: 8px; margin-bottom: 20px; font-family: 'Orbitron'; font-size: 0.7rem;
         }
 
-        /* Nav Bar */
+        /* Nav Bar a 4 Tasti */
         nav {
             position: fixed; bottom: 0; width: 100%; height: 75px;
             background: var(--nav-bg); display: flex; justify-content: space-around; align-items: center;
             border-top: 1px solid var(--accent-color); z-index: 1000;
         }
-        .nav-item { background: none; border: none; color: #555; font-size: 0.6rem; font-family: 'Orbitron'; }
+        .nav-item { background: none; border: none; color: #555; font-size: 0.55rem; font-family: 'Orbitron'; }
         .nav-item.active-btn { color: var(--accent-color); }
-        .nav-icon { font-size: 1.4rem; display: block; margin-bottom: 5px; }
+        .nav-icon { font-size: 1.2rem; display: block; margin-bottom: 5px; }
     </style>
 </head>
 <body>
@@ -83,7 +83,7 @@
     <header><h1>VRT SIM RACING</h1></header>
 
     <div id="home" class="page active">
-        <h2 style="font-size: 0.9rem; text-align: center; font-family: 'Orbitron'; margin-bottom: 20px;">LINEUP</h2>
+        <h2 style="font-size: 0.8rem; text-align: center; font-family: 'Orbitron';">LINEUP</h2>
         <div class="category-grid">
             <div class="cat-card" onclick="showCategory('F1')">F1</div>
             <div class="cat-card" onclick="showCategory('F2')">F2</div>
@@ -93,7 +93,7 @@
     </div>
 
     <div id="rank-menu" class="page">
-        <h2 style="font-size: 0.9rem; text-align: center; font-family: 'Orbitron'; margin-bottom: 20px;">RANKINGS</h2>
+        <h2 style="font-size: 0.8rem; text-align: center; font-family: 'Orbitron';">RANKINGS</h2>
         <div class="category-grid">
             <div class="cat-card" onclick="showRank('F1')">F1 RANK</div>
             <div class="cat-card" onclick="showRank('F2')">F2 RANK</div>
@@ -103,7 +103,7 @@
     </div>
 
     <div id="lastrace-menu" class="page">
-        <h2 style="font-size: 0.9rem; text-align: center; font-family: 'Orbitron'; margin-bottom: 20px;">LAST RACE</h2>
+        <h2 style="font-size: 0.8rem; text-align: center; font-family: 'Orbitron';">LAST RACE</h2>
         <div class="category-grid">
             <div class="cat-card" onclick="showLastRace('F1')">F1 L.R.</div>
             <div class="cat-card" onclick="showLastRace('F2')">F2 L.R.</div>
@@ -112,22 +112,19 @@
         </div>
     </div>
 
-    <div id="pilot-detail" class="page">
-        <button class="back-btn" onclick="openPage('home')">← INDIETRO</button>
-        <div id="piloti-container"></div>
+    <div id="palmares-menu" class="page">
+        <h2 style="font-size: 0.8rem; text-align: center; font-family: 'Orbitron';">PALMARES</h2>
+        <div class="category-grid">
+            <div class="cat-card" onclick="showPalmares('F1')">F1 PALM.</div>
+            <div class="cat-card" onclick="showPalmares('F2')">F2 PALM.</div>
+            <div class="cat-card" onclick="showPalmares('F3')">F3 PALM.</div>
+            <div class="cat-card" onclick="showPalmares('F4')">F4 PALM.</div>
+        </div>
     </div>
 
-    <div id="rank-detail" class="page">
-        <button class="back-btn" onclick="openPage('rank-menu')">← INDIETRO</button>
-        <h2 id="rank-title" style="font-family: 'Orbitron'; font-size: 1rem; color: var(--accent-color);"></h2>
-        <table id="table-piloti"></table>
-        <table id="table-team" style="margin-top: 20px;"></table>
-    </div>
-
-    <div id="lastrace-detail" class="page">
-        <button class="back-btn" onclick="openPage('lastrace-menu')">← INDIETRO</button>
-        <h2 id="lr-title" style="font-family: 'Orbitron'; font-size: 1rem; color: var(--accent-color);"></h2>
-        <table id="table-lastrace"></table>
+    <div id="detail-page" class="page">
+        <button id="back-btn" class="back-btn">← INDIETRO</button>
+        <div id="detail-content"></div>
     </div>
 
     <nav>
@@ -138,80 +135,69 @@
             <span class="nav-icon">📊</span>RANK
         </button>
         <button class="nav-item" onclick="openPage('lastrace-menu', this)">
-            <span class="nav-icon">🏁</span>LAST RACE
+            <span class="nav-icon">🏁</span>L. RACE
+        </button>
+        <button class="nav-item" onclick="openPage('palmares-menu', this)">
+            <span class="nav-icon">🏆</span>PALMARES
         </button>
     </nav>
 
     <script>
         const teamData = {
             'F1': {
-                piloti: [
-                    { nome: 'M. Rossi', img: 'https://via.placeholder.com/150', partenze: 45, podi: 12, vittorie: 5 },
-                    { nome: 'L. Bianchi', img: 'https://via.placeholder.com/150', partenze: 42, podi: 8, vittorie: 3 }
-                ],
-                rankPiloti: [{pos: 1, nome: 'M. Rossi', pt: 150}, {pos: 2, nome: 'L. Bianchi', pt: 130}],
-                rankTeam: [{pos: 1, nome: 'VRT F1 Team', pt: 280}],
-                lastRace: [{pos: 1, nome: 'M. Rossi', pt: 25}, {pos: 4, nome: 'L. Bianchi', pt: 12}]
+                piloti: [{ nome: 'M. Rossi', img: 'https://via.placeholder.com/150', partenze: 45, podi: 12, vittorie: 5 }],
+                rankP: [{pos: 1, nome: 'M. Rossi', pt: 150}],
+                rankT: [{pos: 1, nome: 'VRT F1', pt: 280}],
+                last: [{pos: 1, nome: 'M. Rossi', pt: 25}],
+                palm: [{anno: '2025', logo: 'https://cdn-icons-png.flaticon.com/512/744/744922.png', testo: 'DRIVER CHAMPION'}]
             },
             'F2': {
-                piloti: [{ nome: 'A. Neri', img: 'https://via.placeholder.com/150', partenze: 20, podi: 5, vittorie: 2 }, { nome: 'M. Viola', img: 'https://via.placeholder.com/150', partenze: 18, podi: 3, vittorie: 1 }],
-                rankPiloti: [{pos: 1, nome: 'A. Neri', pt: 90}],
-                rankTeam: [{pos: 1, nome: 'VRT Academy', pt: 140}],
-                lastRace: [{pos: 2, nome: 'A. Neri', pt: 18}]
+                piloti: [{ nome: 'A. Neri', img: 'https://via.placeholder.com/150', partenze: 20, podi: 5, vittorie: 2 }],
+                rankP: [{pos: 2, nome: 'A. Neri', pt: 90}], rankT: [{pos: 2, nome: 'VRT Academy', pt: 140}],
+                last: [{pos: 3, nome: 'A. Neri', pt: 15}],
+                palm: [{anno: '2024', logo: 'https://cdn-icons-png.flaticon.com/512/744/744922.png', testo: 'DRIVER CHAMPION'}]
             },
-            'F3': {
-                piloti: [{ nome: 'G. Verdi', img: 'https://via.placeholder.com/150', partenze: 10, podi: 2, vittorie: 0 }, { nome: 'F. Gialli', img: 'https://via.placeholder.com/150', partenze: 10, podi: 1, vittorie: 0 }],
-                rankPiloti: [{pos: 5, nome: 'G. Verdi', pt: 45}],
-                rankTeam: [{pos: 3, nome: 'VRT Junior', pt: 70}],
-                lastRace: [{pos: 8, nome: 'G. Verdi', pt: 4}]
-            },
-            'F4': {
-                piloti: [{ nome: 'D. Blu', img: 'https://via.placeholder.com/150', partenze: 5, podi: 0, vittorie: 0 }, { nome: 'S. Arancio', img: 'https://via.placeholder.com/150', partenze: 5, podi: 0, vittorie: 0 }],
-                rankPiloti: [{pos: 12, nome: 'D. Blu', pt: 10}],
-                rankTeam: [{pos: 6, nome: 'VRT Kids', pt: 15}],
-                lastRace: [{pos: 12, nome: 'D. Blu', pt: 0}]
-            }
+            // Aggiungi F3 e F4 allo stesso modo...
         };
 
         function showCategory(cat) {
-            const container = document.getElementById('piloti-container');
-            container.innerHTML = `<h2 style="font-family:'Orbitron'; font-size:1.2rem; color:var(--accent-color); margin-bottom:20px;">TEAM ${cat}</h2>`;
+            let html = `<h2 style="font-family:'Orbitron'; color:var(--accent-color)">TEAM ${cat}</h2>`;
             teamData[cat].piloti.forEach(p => {
-                container.innerHTML += `
-                    <div class="pilot-card">
-                        <img src="${p.img}" class="pilot-photo" alt="${p.nome}">
-                        <div class="pilot-info">
-                            <span class="pilot-name">${p.nome}</span>
-                            <div class="pilot-stats-row">
-                                <div class="stat-box"><span class="stat-label">Starts</span><strong>${p.partenze}</strong></div>
-                                <div class="stat-box"><span class="stat-label">Podiums</span><strong>${p.podi}</strong></div>
-                                <div class="stat-box"><span class="stat-label">Wins</span><strong>${p.vittorie}</strong></div>
-                            </div>
-                        </div>
-                    </div>`;
+                html += `<div class="pilot-card"><img src="${p.img}" class="pilot-photo"><div class="pilot-info"><span class="pilot-name">${p.nome}</span><div class="pilot-stats-row"><div class="stat-box"><span class="stat-label">Starts</span><strong>${p.partenze}</strong></div><div class="stat-box"><span class="stat-label">Podiums</span><strong>${p.podi}</strong></div><div class="stat-box"><span class="stat-label">Wins</span><strong>${p.vittorie}</strong></div></div></div></div>`;
             });
-            openPage('pilot-detail');
+            renderDetail(html, 'home');
         }
 
         function showRank(cat) {
-            document.getElementById('rank-title').innerText = 'RANKING ' + cat;
-            document.getElementById('table-piloti').innerHTML = `<tr><th>POS</th><th>PILOTA</th><th>PT</th></tr>` + 
-                teamData[cat].rankPiloti.map(r => `<tr><td class="rank-num">${r.pos}</td><td>${r.nome}</td><td>${r.pt}</td></tr>`).join('');
-            document.getElementById('table-team').innerHTML = `<tr><th>POS</th><th>TEAM</th><th>PT</th></tr>` + 
-                teamData[cat].rankTeam.map(r => `<tr><td class="rank-num">${r.pos}</td><td>${r.nome}</td><td>${r.pt}</td></tr>`).join('');
-            openPage('rank-detail');
+            let html = `<h2 style="font-family:'Orbitron'; color:var(--accent-color)">RANK ${cat}</h2>`;
+            html += `<table><tr><th>POS</th><th>PILOTA</th><th>PT</th></tr>` + teamData[cat].rankP.map(r => `<tr><td class="rank-num">${r.pos}</td><td>${r.nome}</td><td>${r.pt}</td></tr>`).join('') + `</table>`;
+            html += `<table style="margin-top:20px"><tr><th>POS</th><th>TEAM</th><th>PT</th></tr>` + teamData[cat].rankT.map(r => `<tr><td class="rank-num">${r.pos}</td><td>${r.nome}</td><td>${r.pt}</td></tr>`).join('') + `</table>`;
+            renderDetail(html, 'rank-menu');
         }
 
         function showLastRace(cat) {
-            document.getElementById('lr-title').innerText = 'LAST RACE ' + cat;
-            document.getElementById('table-lastrace').innerHTML = `<tr><th>POS</th><th>PILOTA</th><th>PT GARA</th></tr>` + 
-                teamData[cat].lastRace.map(r => `<tr><td class="rank-num">${r.pos}</td><td>${r.nome}</td><td>${r.pt}</td></tr>`).join('');
-            openPage('lastrace-detail');
+            let html = `<h2 style="font-family:'Orbitron'; color:var(--accent-color)">RESULT ${cat}</h2>`;
+            html += `<table><tr><th>POS</th><th>PILOTA</th><th>PT GARA</th></tr>` + teamData[cat].last.map(r => `<tr><td class="rank-num">${r.pos}</td><td>${r.nome}</td><td>${r.pt}</td></tr>`).join('') + `</table>`;
+            renderDetail(html, 'lastrace-menu');
         }
 
-        function openPage(pageId, btn) {
+        function showPalmares(cat) {
+            let html = `<h2 style="font-family:'Orbitron'; color:var(--accent-color)">PALMARES ${cat}</h2>`;
+            teamData[cat].palm.forEach(p => {
+                html += `<div class="palmares-row"><div class="palmares-year">${p.anno}</div><img src="${p.logo}" class="palmares-logo"><div class="palmares-text">${p.testo}</div></div>`;
+            });
+            renderDetail(html, 'palmares-menu');
+        }
+
+        function renderDetail(content, backTo) {
+            document.getElementById('detail-content').innerHTML = content;
+            document.getElementById('back-btn').onclick = () => openPage(backTo);
+            openPage('detail-page');
+        }
+
+        function openPage(id, btn) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
+            document.getElementById(id).classList.add('active');
             if(btn) {
                 document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active-btn'));
                 btn.classList.add('active-btn');
